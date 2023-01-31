@@ -16,6 +16,12 @@
 
 	aliases {
 		serial0 = &uart0;
+		serial1 = &uart1;
+		serial2 = &uart2;
+		serial3 = &uart3;
+		ethernet0 = &emac;
+		spi0 = &spi0;
+		spi1 = &spi1;
 	};
 
 	chosen {
@@ -37,10 +43,10 @@
 		};
 	};
 
-	gpio-keys {
+	r_gpio_keys {
 		compatible = "gpio-keys";
 
-		key-0 {
+		k1 {
 			label = "k1";
 			linux,code = <BTN_0>;
 			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>; /* PL3 */
@@ -90,7 +96,7 @@
 	wifi_pwrseq: wifi_pwrseq {
 		compatible = "mmc-pwrseq-simple";
 		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
-		clocks = <&rtc CLK_OSC32K_FANOUT>;
+		clocks = <&rtc 1>;
 		clock-names = "ext_clock";
 	};
 
@@ -100,9 +106,6 @@
 	cpu-supply = <&reg_vdd_cpux>;
 };
 
-&ehci0 {
-	status = "okay";
-};
 
 &mmc0 {
 	bus-width = <4>;
@@ -128,10 +131,6 @@
 	};
 };
 
-&ohci0 {
-	status = "okay";
-};
-
 &reg_usb0_vbus {
 	gpio = <&r_pio 0 2 GPIO_ACTIVE_HIGH>; /* PL2 */
 	status = "okay";
@@ -151,7 +150,7 @@
 
 	bluetooth {
 		compatible = "brcm,bcm43438-bt";
-		clocks = <&rtc CLK_OSC32K_FANOUT>;
+		clocks = <&rtc 1>;
 		clock-names = "lpo";
 		vbat-supply = <&reg_vcc3v3>;
 		vddio-supply = <&reg_vcc3v3>;
@@ -171,3 +170,52 @@
 	usb0_vbus-supply = <&reg_usb0_vbus>;
 	status = "okay";
 };
+
+&emac {
+	phy-handle = <&int_mii_phy>;
+	phy-mode = "mii";
+	allwinner,leds-active-low;
+	status = "okay";
+};
+
+&spi1 {
+	status = "okay";
+	spidev1: spi@0 {
+		compatible = "rohm,dh2228fv";
+		spi-max-frequency = <10000000>;
+		reg = <0>;
+	};
+};
+
+&ehci0 {
+        status = "okay";
+};
+
+&ohci0 {
+        status = "okay";
+};
+
+&ehci1 {
+        status = "okay";
+};
+
+&ohci1 {
+        status = "okay";
+};
+
+&ehci2 {
+        status = "okay";
+};
+
+&ohci2 {
+        status = "okay";
+};
+
+&ehci3 {
+        status = "okay";
+};
+
+&ohci3 {
+        status = "okay";
+};
+
