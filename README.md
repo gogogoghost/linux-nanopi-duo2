@@ -5,7 +5,7 @@ git clone https://github.com/gogogoghost/linux-nanopi-duo2 --depth=1
 
 cd linux-nanopi-duo2
 
-make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- nanopi_duo2-defconfig
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- nanopi_duo2_defconfig
 
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage
 
