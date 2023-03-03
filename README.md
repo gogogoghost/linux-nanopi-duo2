@@ -1,7 +1,7 @@
 ## Linux Mainline Kernel for nanopi duo2
 
 ```sh
-https://github.com/gogogoghost/linux-nanopi-duo2 --depth=1
+git clone https://github.com/gogogoghost/linux-nanopi-duo2 --depth=1
 
 cd linux-nanopi-duo2
 
